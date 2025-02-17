@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { DataService } from '../../data/data.service';
+import { DataChecker, DataPoint, GraphData } from '../../shared/models/graph-models';
 
 @Component({
   selector: 'app-single-bar',
@@ -10,13 +11,19 @@ import { DataService } from '../../data/data.service';
 })
 export class SingleBarComponent {
 
-  colorScheme = {};
-  data: { name: string; value: number; }[] = [];
+  @Input("GraphData") graphData: GraphData = DataChecker.EmptyGraphData;
 
-  constructor( private dataService: DataService){}
+  colorScheme = {};
+  data: DataPoint[] = [];
+
+  constructor(){}
 
   ngOnInit(): void {
-    this.data = this.dataService.data;
+    if(DataChecker.checkSingleSeries(this.graphData.Data)){
+      this.data = this.graphData.Data.map((point) => {
+        return { name: point.name, value: point.value as number };
+      });
+    }
   }
 
 }
