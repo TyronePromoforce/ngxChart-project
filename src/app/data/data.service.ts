@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class DataService {
   constructor() {}
 
@@ -11,8 +11,4 @@ export class DataService {
     { name: 'Germany', value: 83783942 },
     { name: 'UK', value: 67886011 }
   ];
-
-  colorScheme = {
-    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
-  };
 }
