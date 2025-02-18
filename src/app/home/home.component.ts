@@ -14,6 +14,7 @@ import { DataChecker, GraphData } from '../shared/models/graph-models';
 export class HomeComponent {
 
   data: GraphData = DataChecker.EmptyGraphData;
+  dataSeries: GraphData = DataChecker.EmptyGraphData;
 
   constructor(private dataService: DataService){}
 
@@ -24,6 +25,13 @@ export class HomeComponent {
       Data: this.dataService.data,
       GraphName: "Population by Country"
     };
+
+    this.dataSeries = {
+      xAxisName: "Country",
+      yAxisName: "Population",
+      Data: this.dataService.seriesData,
+      GraphName: "Population by Country"
+    }
   }
 
 }

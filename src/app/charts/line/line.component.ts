@@ -1,3 +1,4 @@
+
 import { Component, Input } from '@angular/core';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { DataChecker, DataPoint, GraphData } from '../../shared/models/graph-models';
@@ -12,12 +13,12 @@ export class LineComponent {
 
    @Input("GraphData") graphData: GraphData = DataChecker.EmptyGraphData;
 
-   data: DataPoint[] = [];
+   data: {name: string, series: DataPoint[]}[] = [];
 
    ngOnInit(): void {
-    if(DataChecker.checkSingleSeries(this.graphData.Data)){
+    if(!DataChecker.checkSingleSeries(this.graphData.Data)){
       this.data = this.graphData.Data.map((point) => {
-        return { name: point.name, value: point.value as number };
+        return { name: point.name, series: point.value as DataPoint[] };
       });
     }
   }

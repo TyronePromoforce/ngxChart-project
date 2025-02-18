@@ -12,4 +12,15 @@ export class DataService {
     { name: 'Germany', value: 83783942 },
     { name: 'UK', value: 67886011 }
   ];
+
+  seriesData: DataPoint[] = [
+    {name: 'USA', value: [
+      { name: '2010', value: 331002651 },
+      { name: '2011', value: 1439323776 }
+    ]},
+    {name: 'China', value: [
+      { name: '2010', value: 1380004385 },
+      { name: '2011', value: 83783942 }
+    ]}
+  ]
 }
